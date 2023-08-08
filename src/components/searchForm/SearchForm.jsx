@@ -1,30 +1,32 @@
+import { toast } from 'react-toastify';
 import { FaSearch } from 'react-icons/fa';
 import css from './SearchForm.module.css';
-import { useState } from "react";
+import { useState } from 'react';
 
-const SearchForm = ({onSubmit}) => {
- const [query, setQuery] = useState('');
-    const handleChange = e => {
-        setQuery( e.currentTarget.value);
-      };
-    
-      const handleSubmitSearch = e => {
-        e.preventDefault();
-        if (!query.trim()) {
-        //   toast.warning('Enter a search query!');
-          return;
-        }
-        onSubmit(query);
-        setQuery('');
-        e.target.reset();
-      };
+const SearchForm = ({ onSubmit }) => {
+  const [query, setQuery] = useState('');
+  const handleChange = e => {
+    setQuery(e.currentTarget.value);
+  };
 
-    return (
-        <form className={css.searchForm} onSubmit={handleSubmitSearch}>
+  const handleSubmitSearch = e => {
+    e.preventDefault();
+    if (!query.trim()) {
+      toast('Enter a search query!');
+
+      return;
+    }
+    onSubmit(query);
+    setQuery('');
+    e.target.reset();
+  };
+
+  return (
+    <div>
+      <form className={css.searchForm} onSubmit={handleSubmitSearch}>
         <button type="submit" className={css.searchFormButton}>
           <span className={css.searchFormButtonLabel}>
-            <FaSearch/>
-            &nbsp;Search
+            <FaSearch style={{ fontSize: '1.4rem' }} />
           </span>
         </button>
 
@@ -33,11 +35,12 @@ const SearchForm = ({onSubmit}) => {
           type="text"
           autoComplete="off"
           autoFocus
-          placeholder="Search images and photos"
+          placeholder="Search"
           onChange={handleChange}
         />
       </form>
-    )
-}
+    </div>
+  );
+};
 
 export default SearchForm;
