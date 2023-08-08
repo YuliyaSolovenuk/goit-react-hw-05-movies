@@ -1,28 +1,25 @@
-import axios from 'axios';
 import { toast } from 'react-toastify';
 import MoviesList from 'components/moviesList/MoviesList';
 import SearchForm from 'components/searchForm/SearchForm';
 import { useEffect, useState } from 'react';
+import { getSearchMovies } from 'services/TmdbAPI';
 
 const Movie = () => {
   const [movies, setMovies] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
-    const getSearchMovies = async () => {
+    const fetchSearchMovies = async () => {
       try {
-        const response = await axios.get(
-          `https://api.themoviedb.org/3/search/movie?query=${searchQuery}&api_key=1bb674914a73bcdd70cc8fd8d868be33`
-        );
+        const response = await getSearchMovies(searchQuery);
 
-        setMovies(response.data.results);
-        console.log(response);
+        setMovies(response);
       } catch (error) {
         console.error(error);
       }
     };
 
-    getSearchMovies();
+    fetchSearchMovies();
   }, [searchQuery]);
 
   const handleFormSubmit = query => {

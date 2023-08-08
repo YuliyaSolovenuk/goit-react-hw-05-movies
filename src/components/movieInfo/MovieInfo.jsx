@@ -26,7 +26,7 @@ const MovieInfo = ({
           {overview}
         </p>
         <p>
-          <b>Genres</b>
+          <b>Genres</b></p>
           {genres && (
             <ul>
               {genres.map(({ id, name }) => {
@@ -34,7 +34,7 @@ const MovieInfo = ({
               })}
             </ul>
           )}
-        </p>
+        
       </div>
     </div>
   );

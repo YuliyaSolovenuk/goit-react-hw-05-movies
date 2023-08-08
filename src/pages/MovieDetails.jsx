@@ -1,43 +1,41 @@
-import axios from 'axios';
+import ButtonBack from 'components/buttonBack/ButtonBack';
 import MovieDetailsLink from 'components/movieDetailsLink/MovieDetailsLink';
 import MovieInfo from 'components/movieInfo/MovieInfo';
 // import { toast } from 'react-toastify';
-import { useEffect, useState } from 'react';
-import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
+import { Suspense, useEffect, useState } from 'react';
+import { Outlet, useLocation, useParams } from 'react-router-dom';
+import { getMovieDetails } from 'services/TmdbAPI';
 
 const MovieDetails = () => {
-    const location = useLocation();
-const goBackLink = location?.state?.from || '/';
-  const {movieId} = useParams();
+  const location = useLocation();
+  const goBackLink = location?.state?.from ?? '/';
+  const { movieId } = useParams();
   const [movieInfo, setMovieInfo] = useState(null);
 
   useEffect(() => {
-    const getMovieDetails = async () => {
+    const fetchMovieDetails = async () => {
       try {
-        const response = await axios.get(
-          `https://api.themoviedb.org/3/movie/${movieId}?language=en-US&api_key=1bb674914a73bcdd70cc8fd8d868be33`
-        );
+        const response = await getMovieDetails(movieId);
 
-        setMovieInfo(response.data);
-        console.log(response);
+        setMovieInfo(response);
       } catch (error) {
         console.error(error);
       }
     };
 
-    getMovieDetails();
+    fetchMovieDetails();
   }, [movieId]);
 
-
+  if (!movieInfo) return;
 
   return (
     <div>
-      <button type='button'>
-      <Link to={goBackLink}>Go Back</Link>
-      </button>
-      <MovieInfo {...movieInfo}/>
-      <MovieDetailsLink/>
-      <Outlet/>
+      <ButtonBack goBackLink={goBackLink} />
+      <MovieInfo {...movieInfo} />
+      <MovieDetailsLink />
+      <Suspense fallback={<div>Loading...</div>}>
+        <Outlet />
+      </Suspense>
     </div>
   );
 };

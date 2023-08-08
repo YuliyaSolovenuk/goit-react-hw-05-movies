@@ -1,31 +1,26 @@
 import MoviesList from 'components/moviesList/MoviesList';
 import { useEffect, useState } from 'react';
-// import { getTrendingMovies } from 'services/TmdbAPI';
+import { getTrendingMovies } from 'services/TmdbAPI';
 
-import axios from "axios";
-
-const Home = () => { 
+const Home = () => {
   const [moviesTrending, setMoviesTrending] = useState([]);
   useEffect(() => {
-    const getTrendingMovies = async () => {
+    const fetchTrendingMovies = async () => {
       try {
-        const response = await axios.get(
-          'https://api.themoviedb.org/3/trending/movie/day?api_key=1bb674914a73bcdd70cc8fd8d868be33'
-        );
+        const response = await getTrendingMovies();
 
-        setMoviesTrending(response.data.results)
-        console.log(response);
+        setMoviesTrending(response);
       } catch (error) {
         console.error(error);
       }
     };
 
-    getTrendingMovies();
+    fetchTrendingMovies();
   }, []);
 
   return (
     <div>
-      {<MoviesList movies={moviesTrending} title={'Trending movies today'}/>}
+      {<MoviesList movies={moviesTrending} title={'Trending movies today'} />}
     </div>
   );
 };

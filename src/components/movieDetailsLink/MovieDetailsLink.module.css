@@ -1,29 +1,29 @@
 .solidLine {
-    width: 100%;
-    height: 2px; 
-    background-color: #533b54;
-    margin: 20px 0;
+  width: 100%;
+  height: 2px;
+  background-color: #533b54;
+  margin: 20px 0;
 }
 
-.listAdd{
-    padding: 8px 0;
-    display: flex;
-    gap: 16px;
+.listAdd {
+  padding: 8px 0;
+  display: flex;
+  gap: 16px;
 }
 
-.linkAdd{
-    font-size: 18px;
-    font-weight: 500;
-    color: #533b54;;
+.linkAdd {
+  font-size: 18px;
+  font-weight: 500;
+  color: #533b54;
 }
 
-.linkAdd .isActive{
-    color: #5e0655;
-    text-decoration: underline;
+.linkAdd .isActive {
+  color: #5e0655;
+  text-decoration: underline;
 }
 
 .linkAdd:hover,
-.linkAdd:focus{
-    color: #5e0655;
-text-decoration: underline;
+.linkAdd:focus {
+  color: #5e0655;
+  text-decoration: underline;
 }
