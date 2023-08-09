@@ -14,6 +14,12 @@ const Movie = () => {
         const response = await getSearchMovies(searchQuery);
 
         setMovies(response);
+
+        if (response.length === 0 && searchQuery !== '') {
+          toast(
+            'Sorry, there are no images matching your search query. Please try again.'
+          );
+        }
       } catch (error) {
         console.error(error);
       }
@@ -37,7 +43,7 @@ const Movie = () => {
   return (
     <div>
       <SearchForm onSubmit={handleFormSubmit} />
-      {searchQuery && (
+      {searchQuery && movies && (
         <MoviesList movies={movies} title={'Movies by search query'} />
       )}
     </div>

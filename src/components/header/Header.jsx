@@ -7,12 +7,22 @@ const Header = () => {
       <nav>
         <ul className={css.navList}>
           <li className={css.navItem}>
-            <NavLink className={css.navLink} to="/">
+            <NavLink
+              className={({ isActive }) =>
+                [isActive ? css['active'] : '', css['navLink']].join(' ')
+              }
+              to="/"
+            >
               Home
             </NavLink>
           </li>
           <li className={css.navItem}>
-            <NavLink className={css.navLink} to="/movies">
+            <NavLink
+              className={({ isActive }) =>
+                [isActive ? css['active'] : '', css['navLink']].join(' ')
+              }
+              to="/movies"
+            >
               Movies
             </NavLink>
           </li>

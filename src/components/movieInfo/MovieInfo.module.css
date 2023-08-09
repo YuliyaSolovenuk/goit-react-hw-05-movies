@@ -1,0 +1,13 @@
+.infoWrapper {
+  display: flex;
+  gap: 15px;
+  padding: 10px;
+}
+
+.infoImgWrapper {
+  width: 300px;
+}
+
+.infoDescrWrapper {
+  width: 700px;
+}

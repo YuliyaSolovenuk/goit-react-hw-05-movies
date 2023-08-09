@@ -1,7 +1,6 @@
 import ButtonBack from 'components/buttonBack/ButtonBack';
 import MovieDetailsLink from 'components/movieDetailsLink/MovieDetailsLink';
 import MovieInfo from 'components/movieInfo/MovieInfo';
-// import { toast } from 'react-toastify';
 import { Suspense, useEffect, useState } from 'react';
 import { Outlet, useLocation, useParams } from 'react-router-dom';
 import { getMovieDetails } from 'services/TmdbAPI';

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { toast } from 'react-toastify';
 import { FaSearch } from 'react-icons/fa';
 import css from './SearchForm.module.css';
@@ -13,7 +14,6 @@ const SearchForm = ({ onSubmit }) => {
     e.preventDefault();
     if (!query.trim()) {
       toast('Enter a search query!');
-
       return;
     }
     onSubmit(query);
@@ -41,6 +41,10 @@ const SearchForm = ({ onSubmit }) => {
       </form>
     </div>
   );
+};
+
+SearchForm.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
 };
 
 export default SearchForm;

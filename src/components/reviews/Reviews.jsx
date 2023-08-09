@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getMovieReviews } from 'services/TmdbAPI';
+import css from './Reviews.module.css';
 
 const Reviews = () => {
   const [reviews, setReviews] = useState(null);
@@ -23,7 +24,7 @@ const Reviews = () => {
   if (!reviews) return;
 
   return (
-    <div>
+    <div className={css.reviewsWrapper}>
       <ul>
         {reviews.length ? (
           reviews.map(({ author, content, id }) => {

@@ -1,6 +1,7 @@
 .btnBack {
   border-radius: 2px;
   padding: 4px 8px;
+  margin-left: 10px;
   border: 1px solid rgb(83, 59, 84);
 
   cursor: pointer;
@@ -13,7 +14,6 @@
 .btnBack:focus {
   background-color: rgb(83, 59, 84);
   color: rgb(240, 255, 255);
-  
 }
 
 .btnLink {
