@@ -3,13 +3,17 @@ import MoviesList from 'components/moviesList/MoviesList';
 import SearchForm from 'components/searchForm/SearchForm';
 import { useEffect, useState } from 'react';
 import { getSearchMovies } from 'services/TmdbAPI';
+import { useSearchParams } from "react-router-dom";
 
 const Movie = () => {
   const [movies, setMovies] = useState([]);
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchParams, setSearchParams] = useSearchParams();
+  const searchQuery = searchParams.get("query");
 
   useEffect(() => {
+
     const fetchSearchMovies = async () => {
+  
       try {
         const response = await getSearchMovies(searchQuery);
 
@@ -36,7 +40,7 @@ const Movie = () => {
       return;
     }
 
-    setSearchQuery(query);
+    setSearchParams({query});
     setMovies([]);
   };
 

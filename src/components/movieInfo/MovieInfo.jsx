@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import css from './MovieInfo.module.css';
+import fallbackImage from '../../image/no-photo.png';
 
 const MovieInfo = ({
   title,
@@ -12,7 +13,11 @@ const MovieInfo = ({
     <div className={css.infoWrapper}>
       <div className={css.infoImgWrapper}>
         <img
-          src={`https://image.tmdb.org/t/p/w300/${backdrop_path}`}
+          src={
+            backdrop_path
+              ? `https://image.tmdb.org/t/p/w300/${backdrop_path}`
+              : fallbackImage
+          }
           alt="title"
         />
       </div>
@@ -53,7 +58,7 @@ MovieInfo.propTypes = {
       name: PropTypes.string.isRequired,
     })
   ).isRequired,
-  backdrop_path: PropTypes.string.isRequired,
+  backdrop_path: PropTypes.string,
 };
 
 export default MovieInfo;

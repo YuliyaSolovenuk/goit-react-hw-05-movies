@@ -25,19 +25,20 @@ const Cast = () => {
   if (!cast) return;
 
   return (
-    <div >
+    <div className={css.castContainer}>
       <ul className={css.castWrapper}>
-        {cast ? (
+        {cast.length ? (
           cast.map(({ id, name, character, profile_path }) => {
             return (
               <li className={css.itemActor} key={id}>
                 <img
                   className={`${css.img} css.fallbackImage`}
-                  src={`https://image.tmdb.org/t/p/w300/${profile_path}`}
+                  src={
+                    profile_path
+                      ? `https://image.tmdb.org/t/p/w300/${profile_path}`
+                      : fallbackImage
+                  }
                   alt={name}
-                  onError={e => {
-                    e.target.src = fallbackImage;
-                  }}
                 />
                 <h4 className={css.nameActor}>{name}</h4>
                 <p>Character:&nbsp;{character}</p>

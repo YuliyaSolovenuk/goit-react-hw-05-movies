@@ -13,7 +13,7 @@ const ButtonBack = ({ goBackLink }) => {
 };
 
 ButtonBack.propTypes = {
-  goBackLink: PropTypes.string.isRequired,
+  goBackLink: PropTypes.any,
 };
 
 export default ButtonBack;
