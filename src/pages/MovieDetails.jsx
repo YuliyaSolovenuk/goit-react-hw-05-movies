@@ -1,13 +1,13 @@
 import ButtonBack from 'components/buttonBack/ButtonBack';
 import MovieDetailsLink from 'components/movieDetailsLink/MovieDetailsLink';
 import MovieInfo from 'components/movieInfo/MovieInfo';
-import { Suspense, useEffect, useState } from 'react';
+import { Suspense, useEffect, useRef, useState } from 'react';
 import { Outlet, useLocation, useParams } from 'react-router-dom';
 import { getMovieDetails } from 'services/TmdbAPI';
 
 const MovieDetails = () => {
   const location = useLocation();
-  const goBackLink = location?.state?.from ?? '/';
+  const goBackLink = useRef(location?.state?.from ?? '/');
   const { movieId } = useParams();
   const [movieInfo, setMovieInfo] = useState(null);
 
@@ -29,7 +29,7 @@ const MovieDetails = () => {
 
   return (
     <div>
-      <ButtonBack goBackLink={goBackLink} />
+      <ButtonBack goBackLink={goBackLink.current} />
       <MovieInfo {...movieInfo} />
       <MovieDetailsLink />
       <Suspense fallback={<div>Loading...</div>}>
